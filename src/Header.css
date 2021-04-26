@@ -1,7 +1,13 @@
 a{
+  padding-left: 2rem;
   color:#fff;
 }
 
 a:hover{
   color:darkgrey;
+}
+
+.logout {
+  margin-left: 2rem;
+
 }
