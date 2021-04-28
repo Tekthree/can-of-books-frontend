@@ -73,7 +73,7 @@ How will you approach each other and the challenge of building an application kn
 
 Name of feature: Authentication
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete:  _____
 
 Start time: _____
 
