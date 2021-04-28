@@ -55,15 +55,10 @@ class BestBooks extends Component {
       <div>
         <Carousel>
           {this.state.books.map((item, index) => (
-            <Carousel.Item style={{ height: "400px" }} interval={1000}>
-              <img
-                className="d-block w-100"
-                src="holder.js/800x400?text=First slide&bg=373940"
-                alt="First slide"
-              />
-              <Carousel.Caption>
-                <h3>{item.description}</h3>
-                <p>{item.name}</p>
+            <Carousel.Item style={{ height: "400px" }} interval={4000}>
+              <Carousel.Caption style={{color: 'black'}}>
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
               </Carousel.Caption>
             </Carousel.Item>
           ))}
