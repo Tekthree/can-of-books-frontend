@@ -14,7 +14,7 @@ class BestBooks extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.auth0.user.email)
+
     fetch(`http://localhost:3002/books?email=${this.props.auth0.user.email}`)
       .then((res) => res.json())
       .then(
@@ -41,14 +41,9 @@ class BestBooks extends Component {
         <Carousel>
           {this.state.books.map((item, index) => (
             <Carousel.Item style={{ height: "400px" }} interval={1000}>
-              <img
-                className="d-block w-100"
-                src="holder.js/800x400?text=First slide&bg=373940"
-                alt="First slide"
-              />
-              <Carousel.Caption>
-                <h3>{item.description}</h3>
-                <p>{item.name}</p>
+              <Carousel.Caption style= {{color: 'black'}}>
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
               </Carousel.Caption>
             </Carousel.Item>
           ))}
