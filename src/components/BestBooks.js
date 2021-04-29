@@ -22,23 +22,23 @@ class BestBooks extends Component {
       const response = await axios.get(apiUrlLocation);
       const unsplashImg = response.data;
       this.setState({ setImages: unsplashImg });
-      console.log(unsplashImg)
+      // console.log(unsplashImg)
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
   componentDidMount() {
     console.log(this.props.auth0.user.email);
-    fetch(`http://localhost:3002/books?email=${this.props.auth0.user.email}`)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            books: result,
-          });
-
+    fetch(`http://localhost:3001/books?email=${this.props.auth0.user.email}`)
+    .then((res) => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          isLoaded: true,
+          books: result,
+        });
+        
           console.log("this is the books in state", this.state.books);
         },
         (error) => {
@@ -53,12 +53,13 @@ class BestBooks extends Component {
   }
 
   render() {
-    console.log(this.state.setImages);
+    // console.log(this.state.setImages);
     return (
       <div>
         <Carousel>
-          {this.state.books.map((item, index) => (
-            <Carousel.Item style={{ height: "400px" }} interval={1000}>
+          {this.state.books.map((item, index) => {
+            console.log(this.state.books);
+            <Carousel.Item style={{ height: "400px" }} interval={3000}>
               {this.state.setImages.map((images, index) => (
                 <img
                   className="d-block w-100"
@@ -67,11 +68,11 @@ class BestBooks extends Component {
                 />
               ))}
               <Carousel.Caption>
-                <h3>{item.description}</h3>
-                <p>{item.name}</p>
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
               </Carousel.Caption>
             </Carousel.Item>
-          ))}
+  })}
         </Carousel>
       </div>
     );
