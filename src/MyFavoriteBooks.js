@@ -1,6 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Jumbotron } from "react-bootstrap";
+import { Jumbotron } from "react-bootstrap";
 import "./MyFavoriteBooks.css";
 import BestBooks from "./components/BestBooks";
 import MyModal from "./components/modal.js";
