@@ -27,7 +27,7 @@ class MyModal extends Component {
   addBooks = async (event) => {
     event.preventDefault();
     try {
-      const bookAdd = `http://localhost:3001/books`;
+      const bookAdd = `https://best-books-backend-hunt-tek.herokuapp.com/books`;
       const response = await axios.post(bookAdd,{email: this.props.auth0.user.email, name: this.state.bookName, description: this.state.bookDescription});
 
       const books = response.data;

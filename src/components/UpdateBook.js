@@ -12,7 +12,7 @@ class UpdateBook extends React.Component {
 
   updateBook = async (e) => {
     e.preventDefault();
-    const SERVER = 'http://localhost:3001';
+    const SERVER = 'https://best-books-backend-hunt-tek.herokuapp.com';
     try {
       const updatedBookAxiosArray = await axios.put(`${SERVER}/books/${this.props.index}`, { newBook: {name: this.state.bookName, description: this.state.bookDescription}, email: this.props.email});
 
