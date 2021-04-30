@@ -34,6 +34,27 @@ class MyFavoriteBooks extends React.Component {
     }
   };
 
+  setBooks = () => {
+    fetch(`http://localhost:3001/books?email=${this.props.auth0.user.email}`)
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            books: result,
+          });
+          
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  }
+  
+
   addBookName = (bookName) => this.setState({ bookName });
 
   addBookDescription = (bookDescription) => {
@@ -62,7 +83,7 @@ class MyFavoriteBooks extends React.Component {
         <Jumbotron>
           <h1>My Favorite Books</h1>
           <p>This is a collection of my favorite books</p>
-          <BestBooks books={this.state.books} />
+          <BestBooks books={this.state.books} setBooks={this.setBooks} />
         </Jumbotron>
         <Jumbotron>
           <Books
