@@ -30,23 +30,7 @@ class BestBooks extends Component {
 
   componentDidMount() {
     
-    fetch(`http://localhost:3001/books?email=${this.props.auth0.user.email}`)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            books: result,
-          });
-          
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        }
-      );
+    this.props.setBooks();
     
     this.getPhoto();
   }
@@ -57,7 +41,7 @@ class BestBooks extends Component {
     return (
       <div>
         <Carousel>
-          {this.state.books.map((item, index) => (
+          {this.props.books ? this.props.books.map((item, index) => (
             <Carousel.Item style={{ height: "600px" }} interval={1000}>
               {this.state.setImages.map((images, index) => (
                 <img
@@ -71,7 +55,7 @@ class BestBooks extends Component {
                 <p>{item.description}</p>
               </Carousel.Caption>
             </Carousel.Item>
-          ))}
+          )) : <div></div>}
         </Carousel>
       </div>
     );

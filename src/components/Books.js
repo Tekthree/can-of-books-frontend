@@ -3,7 +3,8 @@ import axios from 'axios';
 import UpdateBook from './UpdateBook';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from "react-bootstrap/Button";
-import updateBookModal from "../components/updateBookModal";
+import { withAuth0 } from "@auth0/auth0-react";
+// import updateBookModal from "../components/updateBookModal";
 
 class Books extends React.Component {
   constructor(props) {
@@ -14,16 +15,20 @@ class Books extends React.Component {
       index: -1
     }
   }
+
   deleteBook = async (index) => {
+    const id = this.props.books[index]._id;
+    console.log(id);
     const newBooks = this.props.books.filter((book, i) => i !== index);
 
     this.props.removeABook(newBooks);
-
-    await axios.delete(`http://localhost:3001/book/${index}`, { params: { email: this.props.email } });
+    console.log('about to axios. delete');
+    await axios.delete(`http://localhost:3001/books/${index}`, { params: { email: this.props.auth0.user.email } });
   }
 
   displayUpdateBook = (idx) => {
     const bookToUpdate = this.props.books[idx];
+    console.log(this.props.books[idx]);
     this.setState({
       displayUpdateBook: true,
       bookToUpdate,
@@ -72,4 +77,4 @@ class Books extends React.Component {
   }
 }
 
-export default Books;
+export default withAuth0(Books);
