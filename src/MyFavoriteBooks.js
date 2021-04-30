@@ -45,6 +45,7 @@ class MyFavoriteBooks extends React.Component {
     e.preventDefault();
     const API = 'http://localhost:3001';
     const books = await axios.post(`${API}/books`,  { name: this.state.bookName, description: this.state.bookDescription , email: this.props.auth0.user.email });
+    this.setState({ showModal: false })
     return books;
   }
 
