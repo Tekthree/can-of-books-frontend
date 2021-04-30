@@ -7,7 +7,8 @@ import MyModal from "./components/modal.js";
 import axios from 'axios';
 // import AddABook from './components/AddABook';
 import Books from './components/Books';
-import Form from './components/Form';
+import { withAuth0 } from '@auth0/auth0-react';
+
 
 class MyFavoriteBooks extends React.Component {
   
@@ -16,7 +17,6 @@ class MyFavoriteBooks extends React.Component {
     this.state = {
       displayAddABook: false,
       books: [],
-      personEmail: '',
       bookName: '',
       bookDescription: ''
     }
@@ -26,7 +26,7 @@ class MyFavoriteBooks extends React.Component {
     e.preventDefault();
     const SERVER = 'http://localhost:3001';
     try {
-      const books = await axios.get(`${SERVER}/books`, { params: { email: this.state.personEmail } });
+      const books = await axios.get(`${SERVER}/books`, { params: { email: this.props.auth0.user.email } });
       this.setState({ books: books.data });
 
     } catch (error) {
@@ -36,17 +36,17 @@ class MyFavoriteBooks extends React.Component {
   }
 
   addBookName = (bookName) => this.setState({ bookName });
-  addBookDescription = (bookDescription) => this.setState({ bookDescription });
+
+  addBookDescription = (bookDescription) => {
+    console.log(bookDescription)
+    this.setState({ bookDescription })};
 
   createBook = async (e) => {
     e.preventDefault();
     const API = 'http://localhost:3001';
-    const books = await axios.post(`${API}/books`, { newBook: { name: this.state.bookName, description: this.state.bookDescription }, email: this.state.personEmail });
-    const allBooksArray = books.data;
-    this.setState({ books: allBooksArray, displayAddABook: false });
+    const books = await axios.post(`${API}/books`,  { name: this.state.bookName, description: this.state.bookDescription , email: this.props.auth0.user.email });
+    return books;
   }
-
-  updateEmail = (email) => this.setState({ personEmail: email });
 
   removeABook = (arrayOfBooks) => this.setState({ books: arrayOfBooks });
   updateBooks = (books) => this.setState({ books });
@@ -62,23 +62,16 @@ class MyFavoriteBooks extends React.Component {
         <Jumbotron>
         <Books
           books={this.state.books}
-          email={this.state.personEmail}
+          email={this.props.auth0.user.email}
           removeABook={this.removeABook}
           updateBooks={this.updateBooks}
         />
-        <Form
-          updateEmail={this.updateEmail}
-          getMyBooks={this.getMyBooks}
-        />
-
-        <button onClick={() => this.setState({ displayAddABook: true })}>Add a Book</button>
-
-        {/* {this.state.displayAddABook &&
+        
           <MyModal            
             addBookName={this.addBookName}
             addBookDescription={this.addBookDescription}
             createBook={this.createBook} ></MyModal>
-        } */}
+    
           
 
         </Jumbotron>
@@ -88,4 +81,4 @@ class MyFavoriteBooks extends React.Component {
   }
 }
 
-export default MyFavoriteBooks;
+export default withAuth0(MyFavoriteBooks);

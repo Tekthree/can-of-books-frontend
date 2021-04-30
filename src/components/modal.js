@@ -60,14 +60,14 @@ class MyModal extends Component {
           <Modal.Body>
           <Container>
           <h1>Add A Book?</h1>
-          <form onSubmit={this.addBooks}>
+          <form onSubmit={(e) => this.props.createBook(e)}>
             <Form.Group role="form" controlId="getCityLocation">
               <Form.Label>Book Name</Form.Label>
               <Form.Control
                 type="text"
                 className="form-control"
                 placeholder=" Name"
-                onChange={(e) => this.setState({ bookName: e.target.value })}
+                onChange={(e) => this.props.addBookName(e.target.value)}
               />
               
               <Form.Label>Book Description</Form.Label>
@@ -75,7 +75,7 @@ class MyModal extends Component {
                 type="text"
                 className="form-control"
                 placeholder="Description"
-                onChange={(e) => this.setState({ bookDescription: e.target.value })}
+                onChange={(e) => this.props.addBookDescription(e.target.value)}
               />
               
             </Form.Group>
