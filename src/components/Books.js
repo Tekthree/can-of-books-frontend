@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import UpdateBook from './UpdateBook';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from "react-bootstrap/Button";
+import updateBookModal from "../components/updateBookModal";
 
 class Books extends React.Component {
   constructor(props) {
@@ -34,19 +36,26 @@ class Books extends React.Component {
   }
 
   render() {
+    console.log('book in books',this.props.books);
     return (
       <>
         <h2>Welcome to the Book Registry!</h2>
+        <Button
+          variant="primary"
+          onClick={() => this.setState({ showModal: true })}
+        >
+          Update
+        </Button>
 
         <ListGroup>
-          {this.props.books && this.props.books.map((book, idx) => (
+          {this.props.books.map((book, idx) => (
             <ListGroup.Item key={idx}>
               <p>name:{book.name}</p>
               <p>description:{book.description}</p>
               <button onClick={() => this.deleteBook(idx)}>delete</button>
               <button onClick={() => this.displayUpdateBook(idx)}>update</button>
             </ListGroup.Item>
-          )) : <div></div>}
+          ))}
         </ListGroup>
 
         {this.state.displayUpdateBook &&
