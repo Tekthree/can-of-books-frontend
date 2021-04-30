@@ -9,7 +9,7 @@ ReactDOM.render(
   <Auth0Provider
     domain="dev-butuv-4t.us.auth0.com"
     clientId="l3TsUPyimtjM4AbvZZmHTmtKMhiK2xgX"
-    redirectUri="https://best-books-backend-hunt-tek.herokuapp.com"
+    redirectUri="https://modest-raman-da64c4.netlify.app"
   >
     <App />
   </Auth0Provider>,
