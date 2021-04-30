@@ -1,3 +1,7 @@
 .jumbotron{
   margin-bottom: 0;
 }
+
+.image{
+  object-fit: contain;
+}

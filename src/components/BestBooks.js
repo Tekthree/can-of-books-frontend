@@ -2,6 +2,7 @@ import { Carousel } from "react-bootstrap";
 import React, { Component } from "react";
 import { withAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import "../MyFavoriteBooks.css";
 
 class BestBooks extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class BestBooks extends Component {
   };
 
   componentDidMount() {
+
     console.log(this.props.auth0.user.email);
     fetch(`http://localhost:3001/books?email=${this.props.auth0.user.email}`)
     .then((res) => res.json())
@@ -57,12 +59,13 @@ class BestBooks extends Component {
     return (
       <div>
         <Carousel>
-          {this.state.books.map((item, index) => {
-            console.log(this.state.books);
-            <Carousel.Item style={{ height: "400px" }} interval={3000}>
+
+          {this.state.books.map((item, index) => (
+            <Carousel.Item style={{ height: "600px" }} interval={1000}>
+
               {this.state.setImages.map((images, index) => (
                 <img
-                  className="d-block w-100"
+                  className="image d-block w-100"
                   src={images.urls.regular}
                   alt="First slide"
                 />
