@@ -23,7 +23,7 @@ class Books extends React.Component {
 
     this.props.removeABook(newBooks);
     console.log('about to axios. delete');
-    await axios.delete(`http://localhost:3001/books/${index}`, { params: { email: this.props.auth0.user.email } });
+    await axios.delete(`https://best-books-backend-hunt-tek.herokuapp.com/books/${index}`, { params: { email: this.props.auth0.user.email } });
   }
 
   displayUpdateBook = (idx) => {

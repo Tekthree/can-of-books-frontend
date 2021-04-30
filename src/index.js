@@ -9,7 +9,7 @@ ReactDOM.render(
   <Auth0Provider
     domain="dev-4rwdhvtd.us.auth0.com"
     clientId="HWQV98E0OwgjRPfHq6GwZCcmO0SfrZHE"
-    redirectUri="http://localhost:3000"
+    redirectUri="https://best-books-backend-hunt-tek.herokuapp.com/"
   >
     <App />
   </Auth0Provider>,

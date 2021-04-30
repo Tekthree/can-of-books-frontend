@@ -23,7 +23,7 @@ class MyFavoriteBooks extends React.Component {
 
   getMyBooks = async (e) => {
     e.preventDefault();
-    const SERVER = "http://localhost:3001";
+    const SERVER = "https://best-books-backend-hunt-tek.herokuapp.com";
     try {
       const books = await axios.get(`${SERVER}/books`, {
         params: { email: this.props.auth0.user.email },
@@ -35,7 +35,7 @@ class MyFavoriteBooks extends React.Component {
   };
 
   setBooks = () => {
-    fetch(`http://localhost:3001/books?email=${this.props.auth0.user.email}`)
+    fetch(`https://best-books-backend-hunt-tek.herokuapp.com/books?email=${this.props.auth0.user.email}`)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -64,7 +64,7 @@ class MyFavoriteBooks extends React.Component {
 
   createBook = async (e) => {
     e.preventDefault();
-    const API = "http://localhost:3001";
+    const API = "https://best-books-backend-hunt-tek.herokuapp.com";
     const books = await axios.post(`${API}/books`, {
       name: this.state.bookName,
       description: this.state.bookDescription,
