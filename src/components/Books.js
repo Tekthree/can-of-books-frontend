@@ -37,10 +37,9 @@ class Books extends React.Component {
     return (
       <>
         <h2>Welcome to the Book Registry!</h2>
-        <p>To find your registry of books, enter your email below.</p>
 
         <ListGroup>
-          {this.props.books ? this.props.books.map((book, idx) => (
+          {this.props.books && this.props.books.map((book, idx) => (
             <ListGroup.Item key={idx}>
               <p>name:{book.name}</p>
               <p>description:{book.description}</p>
