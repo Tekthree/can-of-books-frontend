@@ -8,7 +8,6 @@ class BestBooks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [],
       error: null,
       isLoaded: false,
       setImages: [],
@@ -30,18 +29,16 @@ class BestBooks extends Component {
   };
 
   componentDidMount() {
-
-    console.log(this.props.auth0.user.email);
+    
     fetch(`http://localhost:3001/books?email=${this.props.auth0.user.email}`)
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        this.setState({
-          isLoaded: true,
-          books: result,
-        });
-        
-          console.log("this is the books in state", this.state.books);
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            books: result,
+          });
+          
         },
         (error) => {
           this.setState({
@@ -50,19 +47,18 @@ class BestBooks extends Component {
           });
         }
       );
-
+    
     this.getPhoto();
   }
 
   render() {
     // console.log(this.state.setImages);
+    console.log("this is the books in state", this.state.books);
     return (
       <div>
         <Carousel>
-
           {this.state.books.map((item, index) => (
             <Carousel.Item style={{ height: "600px" }} interval={1000}>
-
               {this.state.setImages.map((images, index) => (
                 <img
                   className="image d-block w-100"
@@ -75,7 +71,7 @@ class BestBooks extends Component {
                 <p>{item.description}</p>
               </Carousel.Caption>
             </Carousel.Item>
-  })}
+          ))}
         </Carousel>
       </div>
     );
