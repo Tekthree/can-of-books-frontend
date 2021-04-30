@@ -7,8 +7,8 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 // TODO: wrap everything in Auth0
 ReactDOM.render(
   <Auth0Provider
-    domain="dev-butuv-4t.us.auth0.com"
-    clientId="l3TsUPyimtjM4AbvZZmHTmtKMhiK2xgX"
+    domain={process.env.REACT_APP_AUTHO_DOMAIN}
+    clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
     redirectUri="https://modest-raman-da64c4.netlify.app"
   >
     <App />
