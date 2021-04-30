@@ -7,8 +7,8 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 // TODO: wrap everything in Auth0
 ReactDOM.render(
   <Auth0Provider
-    domain="dev-4rwdhvtd.us.auth0.com"
-    clientId="HWQV98E0OwgjRPfHq6GwZCcmO0SfrZHE"
+    domain="dev-butuv-4t.us.auth0.com"
+    clientId="l3TsUPyimtjM4AbvZZmHTmtKMhiK2xgX"
     redirectUri="https://best-books-backend-hunt-tek.herokuapp.com"
   >
     <App />
